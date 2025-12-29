@@ -32,7 +32,7 @@ export const Modal: React.FC<ModalProps> = ({
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 ">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 text-gray-950 dark:text-gray-50">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -63,12 +63,8 @@ export const Modal: React.FC<ModalProps> = ({
           >
             {/* Header */}
             {(title || onClose) && (
-              <div className="flex items-center justify-between px-6 py-4 border-b border-border/40">
-                {title && (
-                  <h2 className="text-lg font-semibold text-foreground">
-                    {title}
-                  </h2>
-                )}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-border/40 text-gray-950 dark:text-gray-50">
+                {title && <h2 className="text-lg font-semibold ">{title}</h2>}
                 {onClose && (
                   <Button
                     variant="ghost"

@@ -110,7 +110,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Create Escrow" size="lg">
       {/* Step Indicator */}
-      <div className="flex items-center justify-center gap-4 mb-8">
+      <div className="flex items-center justify-center gap-4 mb-8 ">
         {["details", "review"].map((s, i) => (
           <div
             key={s}
@@ -143,7 +143,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({
           transition={{ duration: 0.2 }}
         >
           {step === "details" && (
-            <div className="space-y-6">
+            <div className="space-y-6 ">
               {/* Amount */}
               <div>
                 <label className="text-sm font-medium mb-2 block">Amount</label>
@@ -157,7 +157,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({
                     }
                   />
                   <select
-                    className="px-3 py-2 border rounded-md bg-background"
+                    className="px-3 py-2 border rounded-md"
                     value={formData.token}
                     onChange={(e) =>
                       setFormData({ ...formData, token: e.target.value })
@@ -249,7 +249,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({
           )}
 
           {step === "review" && (
-            <div className="space-y-4 text-sm">
+            <div className="space-y-4 text-sm text-gray-950 dark:text-gray-50">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <div className="text-muted-foreground">Amount</div>

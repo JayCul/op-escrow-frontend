@@ -233,10 +233,10 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({
                             });
                             setSearchTerm("");
                           }}
-                          className="p-2 rounded-md hover:bg-accent cursor-pointer"
+                          className="p-2 rounded-md hover:bg-blue-400 dark:hover:bg-slate-600 cursor-pointer"
                         >
                           <div className="font-medium">{user.displayName}</div>
-                          <div className="text-xs text-muted-foreground">
+                          <div className="text-xs text-gray-950 dark:text-gray-50 ">
                             {user.email}
                           </div>
                         </div>

@@ -37,7 +37,6 @@ interface UseEscrowsReturn {
     escrowId: number;
     data: { proofURI: string; description?: string };
   }) => void;
-  confirmReceipt: (escrowId: number) => void;
   useViewProof: (escrowId: number) => any;
 
   // Loading states
@@ -46,7 +45,6 @@ interface UseEscrowsReturn {
   isRefunding: boolean;
   isDisputing: boolean;
   isUploadingProof: boolean;
-  isConfirmingReceipt: boolean;
 }
 
 export const useEscrows = (
@@ -76,11 +74,12 @@ export const useEscrows = (
         .getEscrows({ ...filters, sortBy, sortOrder }, page, limit)
         .then((res: any) => res.data as PaginatedResponse<Escrow>),
     staleTime: 30 * 1000,
-    onError: (error: any) => {
-      console.error("Error fetching escrows:", error);
-      toast.error("Failed to load escrows");
-    },
   });
+
+  if (error) {
+    console.error("Error fetching escrows:", error);
+    toast.error("Failed to load escrows");
+  }
 
   // Create escrow mutation
   const createEscrowMutation = useMutation({
@@ -150,16 +149,6 @@ export const useEscrows = (
   });
 
   // Confirm receipt mutation
-  const confirmReceiptMutation = useMutation({
-    mutationFn: escrowsService.confirmReceipt,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["escrows"] });
-      toast.success("Receipt confirmed successfully!");
-    },
-    onError: (error: any) => {
-      toast.error(error.response?.data?.message || "Failed to confirm receipt");
-    },
-  });
 
   // View proof query - extracted to a separate hook
   const useViewProof = (escrowId: number) => {
@@ -192,7 +181,6 @@ export const useEscrows = (
     refundBuyer: refundBuyerMutation.mutate,
     raiseDispute: raiseDisputeMutation.mutate,
     uploadProof: uploadProofMutation.mutate,
-    confirmReceipt: confirmReceiptMutation.mutate,
     useViewProof,
 
     // Loading states
@@ -201,6 +189,5 @@ export const useEscrows = (
     isRefunding: refundBuyerMutation.isPending,
     isDisputing: raiseDisputeMutation.isPending,
     isUploadingProof: uploadProofMutation.isPending,
-    isConfirmingReceipt: confirmReceiptMutation.isPending,
   };
 };

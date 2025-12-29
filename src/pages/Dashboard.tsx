@@ -11,13 +11,12 @@ import type { Escrow } from "@/types";
 
 export const Dashboard: React.FC = () => {
   const user = useUser();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const {
     escrows,
-    pagination,
     isLoading,
-    error: escrowsError,
-    refetch,
+    // error: escrowsError,
+    // refetch,
   } = useEscrows({
     page: currentPage,
     limit: 99,
@@ -36,10 +35,10 @@ export const Dashboard: React.FC = () => {
   //   },
   //   { label: "Partners", value: "24", icon: Users, change: "+3" },
   // ];
-  const { stats, loading, error, refreshStats } = useDashboard();
+  const { stats, isLoading: dashloading } = useDashboard();
 
   if (!user) return null;
-  if (loading) {
+  if (dashloading) {
     return (
       <div
         className="

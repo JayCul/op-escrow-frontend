@@ -12,8 +12,6 @@ import { toast } from "sonner";
 import { cn } from "@/utils/cn";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useUser } from "@/stores/auth.store";
-import { o } from "node_modules/framer-motion/dist/types.d-BJcRxCew";
-import { on } from "events";
 import { parseUnits } from "ethers";
 
 type Step = "details" | "review";
@@ -62,7 +60,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({
     return TOKEN_BY_ADDRESS[tokenAddress.toLowerCase()] ?? "Unknown";
   };
 
-  const { data: searchResults, isFetching } = useQuery({
+  const { data: searchResults } = useQuery({
     queryKey: ["users-search", debouncedSearchTerm],
     queryFn: () =>
       usersService.searchUsers({ searchTerm: debouncedSearchTerm }),
@@ -104,8 +102,8 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({
         buyerId: user!._id,
       });
       setSelectedSeller(null);
-    } catch (error) {
-      toast.error("Failed to create escrow");
+    } catch (error: any) {
+      toast.error("Failed to create escrow", error);
     }
   };
 
@@ -224,7 +222,7 @@ export const CreateEscrowModal: React.FC<CreateEscrowModalProps> = ({
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                     <div className="mt-2 max-h-40 overflow-y-auto space-y-1">
-                      {searchResults?.data.map((user) => (
+                      {searchResults?.data.map((user: any) => (
                         <div
                           key={user.id}
                           onClick={() => {

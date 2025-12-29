@@ -15,11 +15,7 @@ import { Header } from "@/components/layout/Header";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Login } from "@/pages/Login";
 import { Dashboard } from "@/pages/Dashboard";
-import {
-  useAuthStore,
-  useIsAdmin,
-  useIsAuthenticated,
-} from "@/stores/auth.store";
+import { useIsAdmin, useIsAuthenticated } from "@/stores/auth.store";
 import ResetPassword from "./pages/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import { UsersPage } from "./pages/Users";

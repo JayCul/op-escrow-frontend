@@ -1,8 +1,5 @@
 import axios from "axios";
 import { toast } from "sonner";
-import { authService } from "./escrows.service";
-import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_URL || "http://localhost:3000/api";

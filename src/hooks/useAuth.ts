@@ -82,15 +82,12 @@ export const useAuth = () => {
     queryKey: ["user-profile"],
     queryFn: () => usersService.getProfile().then((res) => res.data),
     enabled: !!sessionStorage.getItem("accessToken"),
-    onSuccess: (user) => {
-      sessionStorage.setItem("user", JSON.stringify(user));
-    },
-    onError: () => {
-      // logout();
-
-      toast.error("Logout action");
-    },
   });
+
+  // Side effect for user profile
+  if (userProfile) {
+    sessionStorage.setItem("user", JSON.stringify(userProfile));
+  }
 
   // Forgot password mutation
   const forgotPasswordMutation = useMutation({

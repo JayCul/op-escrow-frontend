@@ -4,7 +4,6 @@ import {
   LayoutDashboard,
   FileText,
   Users,
-  Settings,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";

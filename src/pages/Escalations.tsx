@@ -21,7 +21,7 @@ export const Escalations: React.FC = () => {
             <EscrowCard
               key={escrow.escrowId}
               escrow={escrow}
-              currentUserId={user._id}
+              currentUserId={user!._id}
             />
           ))}
         </div>

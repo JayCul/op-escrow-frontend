@@ -51,7 +51,6 @@ export const EscrowCard: React.FC<EscrowCardProps> = ({
     isRefunding,
     isDisputing,
     isUploadingProof,
-    isConfirmingReceipt,
   } = useEscrows();
 
   const [showUploadProof, setShowUploadProof] = useState(false);
